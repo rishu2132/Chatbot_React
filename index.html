@@ -17,7 +17,7 @@
 			
             // creating components
             
-            function ChatInput(){}
+            function ChatInput(){
                 return ( 
                     <>
                         <input placeholder="Send a message to Chatbot" size="30"/>
@@ -42,9 +42,18 @@
                 return(
                     <>
                     <ChatInput />
-                    <ChatMessage message="Hello" sender="user"/>
-                    <ChatMessage message="what can I do " sender="robot" />
-                    <ChatMessage message="flip a coin" sender="user" />
+                    <ChatMessage
+                     message="Hello"
+                     sender="user"
+                    />
+                    <ChatMessage
+                     message="what can I do " 
+                     sender="robot" 
+                    />
+                    <ChatMessage 
+                     message="flip a coin" 
+                     sender="user" 
+                    />
                     </>
                 );
             }
