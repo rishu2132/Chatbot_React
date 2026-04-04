@@ -26,6 +26,14 @@
                     setInputText(event.target.value);
                 }
 
+                function eventCheck(event){
+                    const buttonPressed = event.key;
+                    
+                    event.key === "Enter" && sendMessage();
+                    event.key === "Escape" && setInputText('');
+                    
+                }
+
                 function sendMessage(){
 
                     const newChatMessages = [
@@ -60,6 +68,7 @@
                             size="30"
                             onChange={saveInputText}
                             value = {inputText}
+                            onKeyDown={eventCheck}
                         />
                         <button onClick={sendMessage}>Send</button>
                     </>
