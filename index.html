@@ -29,36 +29,60 @@
             function ChatMessage({ message , sender }){
                 return (
                     <div>
-                        {sender === 'robot' && <img src="../images/robot.png" width="50"/>}
+                        {sender === 'robot' && <img src="./images/robot.png" width="50"/>}
                         {message}
-                        {sender === 'user' && <img src="../images/user.png" width="50"/>}
+                        {sender === 'user' && <img src="./images/user.png" width="50"/>}
                     </div>
                 );
             }
 
 
+            function ChatMessages(){
+                const chatMessages = [{
+                    message: 'Hello chatbot',
+                    sender: 'user',
+                    id:'id1'
+                },{
+                    message: 'Hello! How can I help you?',
+                    sender: 'robot',
+                    id:'id2'
+                },{
+                    message: 'Can you get me todays date?',
+                    sender: 'user',
+                    id:'id3'
+                },{
+                    message: 'Today is april 4',
+                    sender: 'robot',
+                    id:'id4'
+                }];
+
+                return(
+                    <>
+                        {chatMessages.map((chatMessage) => {
+                            return (
+                                <ChatMessage 
+                                    message={chatMessage.message}
+                                    sender= {chatMessage.sender}
+                                    key={chatMessage.id}
+                                />
+                            );
+                        })}
+                    </>
+                );
+            }
+
 
             function App(){
+            
                 return(
                     <>
                     <ChatInput />
-                    <ChatMessage
-                     message="Hello"
-                     sender="user"
-                    />
-                    <ChatMessage
-                     message="what can I do " 
-                     sender="robot" 
-                    />
-                    <ChatMessage 
-                     message="flip a coin" 
-                     sender="user" 
-                    />
+                    <ChatMessages />
                     </>
                 );
             }
         
-			
+		
 
 
             const container = document.querySelector('.js-container');
