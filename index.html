@@ -21,6 +21,7 @@
             
             function ChatInput({ chatMessages, setChatMessages }){
                 const [inputText, setInputText] = React.useState('');
+								const [isLoading , setIsLoading]= React.useState(false);
 
                 function saveInputText(event){
                     setInputText(event.target.value);
@@ -34,30 +35,47 @@
                     
                 }
 
-                function sendMessage(){
+                async function sendMessage(){
+									if (isLoading || inputText ===''){
+										return;
+									}
 
-                    const newChatMessages = [
-                        ...chatMessages,
-                        {
-                            message: inputText,
-                            sender: 'user',
-                            id: crypto.randomUUID()
-                        }
-                    ];
+									setInputText('');
 
-                    setChatMessages(newChatMessages);
+									const newChatMessages = [
+											...chatMessages,
+											{
+													message: inputText,
+													sender: 'user',
+													id: crypto.randomUUID()
+											}
+									];
 
-                    const response = Chatbot.getResponse(inputText);
-                    setChatMessages([
-                        ...newChatMessages,
-                        {
-                            message: response,
-                            sender: 'robot',
-                            id: crypto.randomUUID()
-                        }
-                    ]);
-                    // controlled input --> clears out the input 
-                    setInputText('');
+									setChatMessages([
+											...chatMessages,
+											{
+												message: 'Loading...',
+												sender:'robot',
+												id: crypto.randomUUID()
+											}
+									]);
+
+									
+									// controlled input --> clears out the input 
+									
+
+									const response = await Chatbot.getResponseAsync(inputText);
+									
+									setChatMessages([
+											...newChatMessages,
+											{
+													message: response,
+													sender: 'robot',
+													id: crypto.randomUUID()
+											}
+									]);
+									
+                   setIsLoading(false);
 
                 }
 
