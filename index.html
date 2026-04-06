@@ -86,6 +86,11 @@
 				color: rgb(200,200,200);
 				font-size: 15px;
 			}
+
+			.loading-spinner {
+				height: 40px;
+				margin: -15px;
+			}
 		</style>
 </head>
 <body>
@@ -137,7 +142,7 @@
 									setChatMessages([
 											...chatMessages,
 											{
-												message: 'Loading...',
+												message: <img src="./images/loading-spinner.gif" className="loading-spinner"/>,
 												sender:'robot',
 												id: crypto.randomUUID()
 											}
