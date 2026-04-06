@@ -80,6 +80,12 @@
 				overflow: scroll;
 				scrollbar-width: none;
 			}
+
+			.app-container p {
+				text-align: center;
+				color: rgb(200,200,200);
+				font-size: 15px;
+			}
 		</style>
 </head>
 <body>
@@ -216,23 +222,7 @@
             function App(){
                 // Lifting the state up
                 // Array destructuring
-                const [chatMessages, setChatMessages]= React.useState([{
-                        message: 'Hello chatbot',
-                        sender: 'user',
-                        id:'id1'
-                    },{
-                        message: 'Hello! How can I help you?',
-                        sender: 'robot',
-                        id:'id2'
-                    },{
-                        message: 'Can you get me todays date?',
-                        sender: 'user',
-                        id:'id3'
-                    },{
-                        message: 'Today is april 4',
-                        sender: 'robot',
-                        id:'id4'
-                    }]);
+                const [chatMessages, setChatMessages]= React.useState([]);
                 // const chatMessages = array[0];   // current value of data
                 // const setChatMessages = array[1];   // update the data so that it can render in html. { updater function }
 
@@ -246,6 +236,8 @@
 													chatMessages={chatMessages}
 													setChatMessages= {setChatMessages}
 											/>
+											<p>{chatMessages.length === 0 ? 'Welcome to the chatbot project! Send a message using the textbox below.' : ''}</p>
+											
                     </div>
                 );
             }
